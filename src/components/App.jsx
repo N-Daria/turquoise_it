@@ -7,6 +7,37 @@ import { Preloader } from "./Preloader";
 export const App = observer(() => {
   const isActive = globalControllerStore.waitForAnswer ? true : false;
   const [isLoader, setIsLoader] = React.useState(false);
+  const selectDefaultValues = [
+    {
+      value: "1",
+      label: "one",
+    },
+    {
+      value: "2",
+      label: "two",
+    },
+    {
+      value: "3",
+      label: "three",
+    },
+    {
+      value: "4",
+      label: "four",
+    },
+    {
+      value: "5",
+      label: "five",
+    },
+  ];
+  const [mainSelectValues, setMainSelectValues] =
+    React.useState(selectDefaultValues);
+
+  const [minorSelectValues, setMinorSelectValues] =
+    React.useState(selectDefaultValues);
+
+  const filterSelectValues = (value) => {
+    return selectDefaultValues.filter((el) => el.value !== value);
+  };
 
   const imitateRequest = (timeout) => {
     globalControllerStore.startRequest();
@@ -33,8 +64,17 @@ export const App = observer(() => {
         block interactive elements for 4 sec & show preloader
       </Button>
 
-      <Select></Select>
-      {/* 2 selects */}
+      <Select
+        defaultValue="one"
+        onChange={(value) => setMinorSelectValues(filterSelectValues(value))}
+        options={mainSelectValues}
+      />
+
+      <Select
+        defaultValue="one"
+        onChange={(value) => setMainSelectValues(filterSelectValues(value))}
+        options={minorSelectValues}
+      />
 
       {isLoader ? <Preloader /> : null}
     </div>
