@@ -67,14 +67,20 @@ export const App = observer(() => {
       <Select
         disabled={isActive}
         defaultValue="one"
-        onChange={(value) => setMinorSelectValues(filterSelectValues(value))}
+        onChange={(value) => {
+          imitateRequest(1500);
+          setMinorSelectValues(filterSelectValues(value));
+        }}
         options={mainSelectValues}
       />
 
       <Select
         disabled={isActive}
         defaultValue="one"
-        onChange={(value) => setMainSelectValues(filterSelectValues(value))}
+        onChange={(value) => {
+          imitateRequest(1500);
+          setMainSelectValues(filterSelectValues(value));
+        }}
         options={minorSelectValues}
       />
 
