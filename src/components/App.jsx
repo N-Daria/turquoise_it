@@ -65,12 +65,14 @@ export const App = observer(() => {
       </Button>
 
       <Select
+        disabled={isActive}
         defaultValue="one"
         onChange={(value) => setMinorSelectValues(filterSelectValues(value))}
         options={mainSelectValues}
       />
 
       <Select
+        disabled={isActive}
         defaultValue="one"
         onChange={(value) => setMainSelectValues(filterSelectValues(value))}
         options={minorSelectValues}
